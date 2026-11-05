@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f4f6f1">
+    <meta name="description" content="Temukan kembali barang yang tertinggal di lingkungan kampus UNPAM.">
+    <title>UNPAM Lost & Found</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="UNPAM Lost and Found, beranda">
+        <span class="brand-mark" aria-hidden="true">U</span>
+        <span class="brand-copy"><strong>UNPAM</strong><small>LOST & FOUND</small></span>
+      </a>
+      <div class="topbar-right">
+        <span class="campus-label"><span class="live-dot"></span> Komunitas kampus</span>
+        <button class="button button-dark" id="open-create" type="button"><span aria-hidden="true">+</span> Buat laporan</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="intro" aria-labelledby="page-title">
+        <div class="intro-copy">
+          <p class="eyebrow">RUANG TEMU BARANG KAMPUS</p>
+          <h1 id="page-title">Yang tertinggal,<br><span>kembali ditemukan.</span></h1>
+          <p class="intro-text">Satu tempat untuk melaporkan dan mencari barang di lingkungan UNPAM.</p>
+          <div class="intro-meta"><span class="meta-mark">01</span> Lihat laporan terbaru di sekitar kampus</div>
+        </div>
+        <div class="intro-photo" role="img" aria-label="Gedung kampus di tengah pepohonan">
+          <div class="photo-caption"><span>AREA KAMPUS</span><strong>Temukan. Hubungi. Kembali.</strong></div>
+          <div class="photo-index">TANGSEL <span>·</span> UNPAM</div>
+        </div>
+      </section>
+
+      <section class="workspace" aria-label="Daftar laporan barang">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">PAPAN LAPORAN</p>
+            <h2>Barang di sekitar kita</h2>
+          </div>
+          <p class="result-count" id="result-count" aria-live="polite"></p>
+        </div>
+
+        <div class="toolbar">
+          <label class="search-box">
+            <span class="search-icon" aria-hidden="true">⌕</span>
+            <span class="sr-only">Cari barang</span>
+            <input id="search-input" type="search" placeholder="Cari nama barang, kategori, lokasi..." autocomplete="off">
+            <kbd>Ctrl K</kbd>
+          </label>
+          <div class="filters" role="group" aria-label="Filter status barang">
+            <button class="filter-button is-active" data-filter="all" type="button">Semua</button>
+            <button class="filter-button" data-filter="lost" type="button"><span class="filter-dot lost-dot"></span>Hilang</button>
+            <button class="filter-button" data-filter="found" type="button"><span class="filter-dot found-dot"></span>Ditemukan</button>
+            <button class="filter-button" data-filter="returned" type="button"><span class="filter-dot returned-dot"></span>Kembali</button>
+          </div>
+        </div>
+
+        <div class="items-grid" id="items-grid" aria-live="polite"></div>
+        <div class="empty-state" id="empty-state" hidden>
+          <span class="empty-symbol" aria-hidden="true">↗</span>
+          <h3>Belum ada yang cocok</h3>
+          <p>Coba kata kunci atau filter lain.</p>
+        </div>
+        <p class="data-note" id="data-note" hidden>Mode demo lokal. Hubungkan Supabase untuk menyimpan data secara permanen.</p>
+      </section>
+    </main>
+
+    <footer class="footer"><span>UNPAM <b>·</b> Lost & Found</span><span>Terhubung, saling membantu.</span></footer>
+
+    <dialog class="report-dialog" id="report-dialog" aria-labelledby="dialog-title">
+      <form id="report-form">
+        <div class="dialog-header">
+          <div><p class="eyebrow">PAPAN LAPORAN</p><h2 id="dialog-title">Buat laporan</h2></div>
+          <button class="close-button" id="close-dialog" type="button" aria-label="Tutup">×</button>
+        </div>
+        <input id="item-id" type="hidden">
+        <label class="field-label" for="item-title">Nama barang <span>*</span></label>
+        <input class="field-input" id="item-title" name="title" maxlength="100" placeholder="Contoh: Tumbler warna hijau" required>
+        <div class="field-row">
+          <div><label class="field-label" for="item-status">Jenis laporan <span>*</span></label>
+            <select class="field-input" id="item-status" name="status" required>
+              <option value="lost">Saya kehilangan</option>
+              <option value="found">Saya menemukan</option>
+              <option value="returned">Sudah kembali ke pemilik</option>
+            </select>
+          </div>
+          <div><label class="field-label" for="item-category">Kategori <span>*</span></label>
+            <select class="field-input" id="item-category" name="category" required>
+              <option value="Aksesori">Aksesori</option>
+              <option value="Elektronik">Elektronik</option>
+              <option value="Kartu & dokumen">Kartu & dokumen</option>
+              <option value="Pakaian">Pakaian</option>
+              <option value="Botol minum">Botol minum</option>
+              <option value="Lainnya">Lainnya</option>
+            </select>
+          </div>
+        </div>
+        <label class="field-label" for="item-location">Lokasi terakhir / ditemukan <span>*</span></label>
+        <input class="field-input" id="item-location" name="location" maxlength="120" placeholder="Contoh: Gedung B, lantai 2" required>
+        <label class="field-label" for="item-description">Ciri-ciri barang</label>
+        <textarea class="field-input" id="item-description" name="description" maxlength="500" rows="3" placeholder="Warna, merek, atau ciri khusus"></textarea>
+        <label class="field-label" for="item-contact">Kontak yang bisa dihubungi <span>*</span></label>
+        <input class="field-input" id="item-contact" name="contact" maxlength="100" placeholder="Nama dan nomor WhatsApp / akun kampus" required>
+        <p class="form-error" id="form-error" role="alert"></p>
+        <div class="dialog-actions">
+          <button class="button button-light" id="cancel-dialog" type="button">Batal</button>
+          <button class="button button-dark" type="submit" id="submit-report">Kirim laporan <span aria-hidden="true">↗</span></button>
+        </div>
+      </form>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>

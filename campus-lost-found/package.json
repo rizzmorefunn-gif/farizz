@@ -1,0 +1,19 @@
+{
+  "name": "unpam-campus-lost-found",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Aplikasi lost and found untuk lingkungan kampus UNPAM",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node index.js",
+    "start": "node index.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.0",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2"
+  }
+}
