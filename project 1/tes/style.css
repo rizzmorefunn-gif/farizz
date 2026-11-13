@@ -1,0 +1,38 @@
+*{
+    box-sizing: content-box;
+    margin: 0%;
+    padding: 0%;
+    font-style: italic;
+}
+
+.warper{
+    width: 100%;
+    margin: auto;
+    position: fixed;
+    background-color: aqua;
+    
+}
+
+.logo {
+    margin: 20px 600px 20px 600px;
+    float: center;
+}
+
+.input{
+    margin: 0px 0px 10px 1000px;
+    float: right;
+}
+
+.nav{
+    margin: 0px 100px 0px 100px;
+    float: right;
+}
+
+.kelompok_promo{
+    position: relative;
+    up: 50px;
+    down: 50px;
+    right: 0px;
+    left: 0px;
+
+}

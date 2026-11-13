@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GameHub - Katalog Game</title>
+  <style>
+    /* Reset & Variabel */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #0f172a;
+      color: #f8fafc;
+      line-height: 1.6;
+    }
+
+    /* Navbar */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: left;
+      padding: 1.5rem 5%;
+      background-color: #1e293b;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #385ef8;
+      letter-spacing: 1px;
+    }
+
+    nav a {
+      color: #94a3b8;
+      text-decoration: none;
+      margin-left: 1.5rem;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #38bdf8;
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: left;
+      padding: 3rem 1rem;
+      background: linear-gradient(180deg, #050843 0%, #213660 100%);
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero p {
+      color: #94a3b8;
+    }
+
+    /* Layout Kontainer */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Fitur Scroll Horizontal (Bisa Digeser) */
+    .scroll-container-wrapper {
+      position: relative;
+    }
+
+    .scroll-container {
+      display: flex;
+      gap: 1.5rem;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      padding-bottom: 1rem;
+      /* Sembunyikan scrollbar di Firefox & IE */
+      scrollbar-width: thin;
+      scrollbar-color: #38bdf8 #1e293b;
+    }
+
+    .scroll-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(30, 41, 59, 0.8);
+      color: #fff;
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 10;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s;
+    }
+
+    .scroll-btn:hover {
+      background: #38bdf8;
+    }
+
+    .scroll-btn.left { left: -15px; }
+    .scroll-btn.right { right: -15px; }
+
+    /* Card Game */
+    .game-card {
+      min-width: 220px;
+      max-width: 220px;
+      background-color: #1e293b;
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+      flex-shrink: 0;
+    }
+
+    .game-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .game-card img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+    }
+
+    .game-info {
+      padding: 1rem;
+    }
+
+    .game-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .game-genre {
+      font-size: 0.8rem;
+      color: #94a3b8;
+      margin-bottom: 0.5rem;
+    }
+
+    .game-rating {
+      color: #facc15;
+      font-size: 0.85rem;
+      font-weight: bold;
+    }
+
+    /* Grid All Games */
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .games-grid .game-card {
+      min-width: 100%;
+      max-width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header>
+    <div class="logo">🎮 GAMEHUB</div>
+    <nav>
+      <a href="#">Beranda</a>
+      <a href="#popular">Populer</a>
+      <a href="#all-games">Semua Game</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Jelajahi Dunia Game</h1>
+    <p>Temukan game favoritmu dan ikuti perkembangan rilisan terbaru.</p>
+  </section>
+
+  <div class="container">
+    
+    <!-- Section Game Populer (Horizontal Scroll) -->
+    <section id="popular" style="margin-bottom: 3rem;">
+      <div class="section-title">
+        <h2>🔥 Game Populer Saat Ini</h2>
+      </div>
+
+      <div class="scroll-container-wrapper">
+        <button class="scroll-btn left" onclick="scrollSlider(-300)">❮</button>
+        
+        <div class="scroll-container" id="slider">
+          <div class="game-card">
+            <img src="https://picsum.photos/300/400?random=1" alt="Game Cover">
+            <div class="game-info">
+              <div class="game-title">Cyber Adventure 2077</div>
+              <div class="game-genre">RPG / Action</div>
+              <div class="game-rating">★ 4.8</div>
+            </div>
+          </div>
+
+          <div class="game-card">
+            <img src="https://picsum.photos/300/400?random=2" alt="Game Cover">
+            <div class="game-info">
+              <div class="game-title">Shadow Legacy</div>
+              <div class="game-genre">Action / Stealth</div>
+              <div class="game-rating">★ 4.6</div>
+            </div>
+          </div>
+
+          <div class="game-card">
+            <img src="https://picsum.photos/300/400?random=3" alt="Game Cover">
+            <div class="game-info">
+              <div class="game-title">Kingdom Tactics</div>
+              <div class="game-genre">Strategy</div>
+              <div class="game-rating">★ 4.9</div>
+            </div>
+          </div>
+
+          <div class="game-card">
+            <img src="https://picsum.photos/300/400?random=4" alt="Game Cover">
+            <div class="game-info">
+              <div class="game-title">Galactic Warfare</div>
+              <div class="game-genre">Sci-Fi / Shooter</div>
+              <div class="game-rating">★ 4.5</div>
+            </div>
+          </div>
+
+          <div class="game-card">
+            <img src="https://picsum.photos/300/400?random=5" alt="Game Cover">
+            <div class="game-info">
+              <div class="game-title">Mythic Journey</div>
+              <div class="game-genre">Fantasy / Open World</div>
+              <div class="game-rating">★ 4.7</div>
+            </div>
+          </div>
+
+          <div class="game-card">
+            <img src="https://picsum.photos/300/400?random=6" alt="Game Cover">
+            <div class="game-info">
+              <div class="game-title">Speed Horizon</div>
+              <div class="game-genre">Racing / Sports</div>
+              <div class="game-rating">★ 4.4</div>
+            </div>
+          </div>
+        </div>
+
+        <button class="scroll-btn right" onclick="scrollSlider(300)">❯</button>
+      </div>
+    </section>
+
+    <!-- Section Semua Game (Grid View) -->
+    <section id="all-games">
+      <div class="section-title">
+        <h2>📚 Semua Katalog Game</h2>
+      </div>
+
+      <div class="games-grid">
+        <div class="game-card">
+          <img src="https://picsum.photos/300/400?random=7" alt="Game Cover">
+          <div class="game-info">
+            <div class="game-title">Dungeon Hunter</div>
+            <div class="game-genre">Hack & Slash</div>
+            <div class="game-rating">★ 4.3</div>
+          </div>
+        </div>
+
+        <div class="game-card">
+          <img src="https://picsum.photos/300/400?random=8" alt="Game Cover">
+          <div class="game-info">
+            <div class="game-title">Urban Drift</div>
+            <div class="game-genre">Racing</div>
+            <div class="game-rating">★ 4.1</div>
+          </div>
+        </div>
+
+        <div class="game-card">
+          <img src="https://picsum.photos/300/400?random=9" alt="Game Cover">
+          <div class="game-info">
+            <div class="game-title">Pixel Survivor</div>
+            <div class="game-genre">Survival / Indie</div>
+            <div class="game-rating">★ 4.8</div>
+          </div>
+        </div>
+
+        <div class="game-card">
+          <img src="https://picsum.photos/300/400?random=10" alt="Game Cover">
+          <div class="game-info">
+            <div class="game-title">Space Odyssey</div>
+            <div class="game-genre">Simulation</div>
+            <div class="game-rating">★ 4.5</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    // Fungsi untuk menggeser daftar game secara horizontal
+    function scrollSlider(distance) {
+      const slider = document.getElementById('slider');
+      slider.scrollBy({ left: distance, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>

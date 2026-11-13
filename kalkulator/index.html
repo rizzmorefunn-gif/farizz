@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Kalkulator bilangan biner, oktal, desimal, dan heksadesimal."
+    />
+    <title>Kalkulator Basis Bilangan</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <main class="calculator">
+      <header class="page-header">
+        <div class="brand-mark" aria-hidden="true">01</div>
+        <p class="eyebrow">ALAT HITUNG DIGITAL</p>
+        <h1>Kalkulator Basis Bilangan</h1>
+        <p class="intro">
+          Hitung dalam basis pilihanmu dan lihat hasilnya dalam empat format
+          sekaligus.
+        </p>
+      </header>
+
+      <form class="calculator-card" id="calculator-form">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">OPERASI</p>
+            <h2>Masukkan bilangan</h2>
+          </div>
+          <span class="integer-badge">Bilangan bulat</span>
+        </div>
+
+        <div class="operand-row">
+          <label class="operand-field" for="first-number">
+            <span class="field-label">Bilangan pertama</span>
+            <input
+              id="first-number"
+              name="first-number"
+              type="text"
+              placeholder="Contoh: 101010"
+              autocomplete="off"
+              spellcheck="false"
+              required
+            />
+          </label>
+          <label class="base-field" for="first-base">
+            <span class="field-label">Basis</span>
+            <select id="first-base" name="first-base">
+              <option value="2">Biner (2)</option>
+              <option value="8">Oktal (8)</option>
+              <option value="10" selected>Desimal (10)</option>
+              <option value="16">Heksadesimal (16)</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="operator-row">
+          <label class="operator-field" for="operator">
+            <span class="field-label">Operasi</span>
+            <select id="operator" name="operator" aria-label="Pilih operasi">
+              <option value="+">Tambah (+)</option>
+              <option value="-">Kurang (−)</option>
+              <option value="*">Kali (×)</option>
+              <option value="/">Bagi (÷)</option>
+            </select>
+          </label>
+          <span class="operator-hint">Operasi dilakukan dengan presisi bilangan bulat.</span>
+        </div>
+
+        <div class="operand-row">
+          <label class="operand-field" for="second-number">
+            <span class="field-label">Bilangan kedua</span>
+            <input
+              id="second-number"
+              name="second-number"
+              type="text"
+              placeholder="Contoh: 12"
+              autocomplete="off"
+              spellcheck="false"
+              required
+            />
+          </label>
+          <label class="base-field" for="second-base">
+            <span class="field-label">Basis</span>
+            <select id="second-base" name="second-base">
+              <option value="2">Biner (2)</option>
+              <option value="8">Oktal (8)</option>
+              <option value="10" selected>Desimal (10)</option>
+              <option value="16">Heksadesimal (16)</option>
+            </select>
+          </label>
+        </div>
+
+        <p class="error-message" id="error-message" role="alert" hidden></p>
+
+        <div class="form-actions">
+          <button class="calculate-button" type="submit">
+            <span>Hitung hasil</span>
+            <span aria-hidden="true">→</span>
+          </button>
+          <button class="reset-button" id="reset-button" type="reset">
+            Bersihkan
+          </button>
+        </div>
+      </form>
+
+      <section class="results-card" aria-labelledby="results-title" aria-live="polite">
+        <div class="section-heading results-heading">
+          <div>
+            <p class="eyebrow">KONVERSI HASIL</p>
+            <h2 id="results-title">Hasil perhitungan</h2>
+          </div>
+          <span class="result-symbol" aria-hidden="true">=</span>
+        </div>
+        <div class="result-list">
+          <div class="result-item">
+            <span class="result-name"><span class="base-dot binary"></span>Biner</span>
+            <output id="result-binary" for="first-number second-number">—</output>
+          </div>
+          <div class="result-item">
+            <span class="result-name"><span class="base-dot octal"></span>Oktal</span>
+            <output id="result-octal" for="first-number second-number">—</output>
+          </div>
+          <div class="result-item">
+            <span class="result-name"><span class="base-dot decimal"></span>Desimal</span>
+            <output id="result-decimal" for="first-number second-number">—</output>
+          </div>
+          <div class="result-item">
+            <span class="result-name"><span class="base-dot hexadecimal"></span>Heksadesimal</span>
+            <output id="result-hexadecimal" for="first-number second-number">—</output>
+          </div>
+        </div>
+        <p class="division-note">
+          Pembagian menghasilkan bilangan bulat dengan pembulatan ke arah nol.
+        </p>
+      </section>
+
+      <footer>Gunakan angka yang sesuai dengan basis yang dipilih.</footer>
+    </main>
+  </body>
+</html>

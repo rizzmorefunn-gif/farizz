@@ -1,0 +1,15 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+a {
+  transition: 0.3s;
+}
+
+a:hover {
+  color: #38bdf8;
+}
